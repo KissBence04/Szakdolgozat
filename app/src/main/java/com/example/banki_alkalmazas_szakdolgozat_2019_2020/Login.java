@@ -27,6 +27,15 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnBejel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Login.this,HomePage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void init(){
