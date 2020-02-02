@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Registration">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etLastName"
+            android:layout_centerInParent="true"
+            android:hint="Vezetéknév"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etFirstName"
+            android:hint="Keresztnév"
+            android:textSize="20dp"
+            android:layout_below="@id/etLastName"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etEmailCim"
+            android:hint="Email cím"
+            android:textSize="20dp"
+            android:layout_below="@id/etFirstName"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etJelszo"
+            android:hint="Jelszó"
+            android:textSize="20dp"
+            android:layout_below="@id/etEmailCim"
+            android:inputType="textPassword"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spPenzNem"
+            android:entries="@array/currency_arrays"
+            android:prompt="@string/currency_prompt"
+            android:layout_below="@id/etJelszo"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_weight=".5">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnRegisztráció"
+            android:text="Regisztráció"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"/>
+    </RelativeLayout>
+</LinearLayout>

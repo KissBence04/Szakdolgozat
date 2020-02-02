@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Banki_alkalmazas_Szakdolgozat_2019_2020</string>
+    <string name="currency_prompt">Válassz pénznemet</string>
+
+    <string-array name="currency_arrays">
+        <item>LittleMoney</item>
+        <item>Eoro</item>
+        <item>Duller</item>
+        <item>Frunk</item>
+        <item>Koruna</item>
+        <item>Robel</item>
+        <item>Denar</item>
+        <item>Repia</item>
+    </string-array>
+</resources>
