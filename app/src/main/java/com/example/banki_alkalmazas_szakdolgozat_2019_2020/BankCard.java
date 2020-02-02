@@ -27,6 +27,15 @@ public class BankCard extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnTranzA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(BankCard.this,Transaction.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void init()

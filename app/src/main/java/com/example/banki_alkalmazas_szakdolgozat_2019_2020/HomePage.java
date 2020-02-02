@@ -35,6 +35,15 @@ public class HomePage extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnTranzakcio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomePage.this,Transaction.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void init(){
