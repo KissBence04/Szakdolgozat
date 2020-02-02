@@ -64,7 +64,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnRegisztráció"
             android:text="Regisztráció"
-            android:textSize="20dp"
             android:layout_centerHorizontal="true"
             android:textAlignment="center"/>
     </RelativeLayout>

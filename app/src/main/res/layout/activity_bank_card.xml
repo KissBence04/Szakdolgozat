@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BankCard">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivBankCard"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ivBankCard"
+        android:layout_weight=".5">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnKartya"
+            android:layout_centerHorizontal="true"
+            android:text="Virtális kártya igénylése"
+            android:textAlignment="center"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnTranzA"
+            android:layout_centerHorizontal="true"
+            android:text="Tranzakció"
+            android:textAlignment="center"
+            android:layout_below="@id/btnKartya"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBalances"
+            android:layout_centerHorizontal="true"
+            android:text="Egyenleg"
+            android:textAlignment="center"
+            android:layout_below="@id/btnTranzA"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBack"
+            android:layout_centerHorizontal="true"
+            android:text="Vissza"
+            android:textAlignment="center"
+            android:layout_below="@id/btnBalances"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

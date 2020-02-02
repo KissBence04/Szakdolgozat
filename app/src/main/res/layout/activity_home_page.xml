@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnCard"
             android:text="Kártya"
-            android:textSize="20dp"
             android:textAlignment="center"
             android:layout_alignParentLeft="true"
             android:layout_weight="1"/>
@@ -34,7 +33,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnTransaction"
             android:text="Tranzakció"
-            android:textSize="18dp"
             android:textAlignment="center"
             android:layout_weight="1"/>
         <Button
@@ -42,7 +40,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnExit"
             android:text="Kilépés"
-            android:textSize="20dp"
             android:textAlignment="center"
             android:layout_alignParentRight="true"
             android:layout_weight="1"
