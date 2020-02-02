@@ -2,6 +2,7 @@ package com.example.banki_alkalmazas_szakdolgozat_2019_2020;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,15 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 System.exit(0);
+            }
+        });
+
+        btnKartya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomePage.this,BankCard.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
