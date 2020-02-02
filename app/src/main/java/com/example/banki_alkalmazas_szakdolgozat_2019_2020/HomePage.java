@@ -1,0 +1,36 @@
+package com.example.banki_alkalmazas_szakdolgozat_2019_2020;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class HomePage extends AppCompatActivity {
+    private TextView tvWelc;
+    private Button btnKartya,btnTranzakcio,btnKilep;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home_page);
+
+        init();
+
+        btnKilep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+    }
+
+    public void init(){
+        tvWelc=findViewById(R.id.tvWelcomeMessage);
+        btnKartya=findViewById(R.id.btnCard);
+        btnTranzakcio=findViewById(R.id.btnTransaction);
+        btnKilep=findViewById(R.id.btnExit);
+    }
+}
