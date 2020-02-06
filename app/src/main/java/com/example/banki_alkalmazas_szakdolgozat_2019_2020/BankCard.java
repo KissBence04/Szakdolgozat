@@ -36,6 +36,15 @@ public class BankCard extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnKartya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ivKartya.getDrawable() == null) {
+                    ivKartya.setImageResource(R.drawable.bank_card);
+                }
+            }
+        });
     }
 
     public void init()
