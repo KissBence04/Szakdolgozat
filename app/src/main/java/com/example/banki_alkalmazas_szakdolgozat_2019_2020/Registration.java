@@ -87,7 +87,7 @@ public class Registration extends AppCompatActivity {
         etEmail=findViewById(R.id.etEmailCim);
         etJelszo=findViewById(R.id.etJelszo);
         btnReg=findViewById(R.id.btnRegisztráció);
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Szakdolgozat");
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Felhasználók");
         firebaseAuth=FirebaseAuth.getInstance();
         tagok=new Tagok();
 
