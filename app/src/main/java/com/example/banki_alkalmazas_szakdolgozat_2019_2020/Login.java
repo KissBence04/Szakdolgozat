@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     private EditText etEmail,etJelszo;
-    private Button btnReg,btnBejel;
+    private Button btnReg,btnBejel,btnElfJelszo;
 
     private FirebaseAuth mAuth;
 
@@ -74,6 +74,15 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+
+        btnElfJelszo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Login.this,ForgotUserPassword.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void init(){
@@ -81,6 +90,7 @@ public class Login extends AppCompatActivity {
         etJelszo=findViewById(R.id.etPassword);
         btnBejel=findViewById(R.id.btnLogin);
         btnReg=findViewById(R.id.btnRegistration);
+        btnElfJelszo=findViewById(R.id.btnForgotPassword);
 
         mAuth=FirebaseAuth.getInstance();
     }

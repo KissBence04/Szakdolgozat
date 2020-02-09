@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Registration extends AppCompatActivity {
     private EditText etVnev, etKnev, etEmail, etJelszo;
-    private Button btnReg;
+    private Button btnReg,bttnVissza;
 
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
@@ -79,6 +79,15 @@ public class Registration extends AppCompatActivity {
                 }
             }
         });
+
+        bttnVissza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Registration.this,Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void init(){
@@ -87,6 +96,7 @@ public class Registration extends AppCompatActivity {
         etEmail=findViewById(R.id.etEmailCim);
         etJelszo=findViewById(R.id.etJelszo);
         btnReg=findViewById(R.id.btnRegisztráció);
+        bttnVissza=findViewById(R.id.bttnVissza);
         databaseReference= FirebaseDatabase.getInstance().getReference().child("Felhasználók");
         firebaseAuth=FirebaseAuth.getInstance();
         tagok=new Tagok();
