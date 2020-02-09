@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvWelcomeMessage"
-        android:text="Üdvözöljük "
+        android:text="Üdvözöljük alkalmazásunkban!"
         android:textSize="20dp"
         android:textAlignment="center"/>
 
