@@ -1,12 +1,13 @@
 package com.example.banki_alkalmazas_szakdolgozat_2019_2020;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.nfc.Tag;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,13 +21,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.ByteArrayOutputStream;
+import java.util.Map;
+import java.util.Set;
+
 public class BankCard extends AppCompatActivity {
     private ImageView ivKartya;
     private Button btnKartya,btnTranzA,btnEgyenleg,btnVissza;
 
+    private SharedPreferences preferences;
+
     private DatabaseReference reference;
     private FirebaseAuth auth;
-    private FirebaseUser user;
+    private FirebaseDatabase mfirebaseDatabase;
+    private String userId;
+    private static final String TAG="ViewDatabase";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +65,20 @@ public class BankCard extends AppCompatActivity {
         btnKartya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    ivKartya.setImageResource(R.drawable.bank_card);
-
+                ivKartya.setImageResource(R.drawable.bank_card);
+                SharedPreferences.Editor editor=preferences.edit();
+                editor.putBoolean("Virtuális kártya",true);
+                editor.apply();
             }
         });
 
-       /* btnEgyenleg.setOnClickListener(new View.OnClickListener() {
+      /* btnEgyenleg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                       String egyenleg=dataSnapshot.getValue("Felhasználók/Uid/egyenleg");
-                       Log.d(dataSnapshot.getKey(), "Egyenleg: "+egyenleg);
+                       showData(dataSnapshot);
                     }
 
                     @Override
@@ -88,8 +98,27 @@ public class BankCard extends AppCompatActivity {
         btnEgyenleg=findViewById(R.id.btnBalances);
         btnVissza=findViewById(R.id.btnBack);
 
+        preferences=getPreferences(Context.MODE_PRIVATE);
+        if(preferences.getBoolean("Virtuális kártya",false))
+        {
+            ivKartya.setImageResource(R.drawable.bank_card);
+        }
+
         auth=FirebaseAuth.getInstance();
-        user=auth.getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Felhasználók/Uid/egyenleg");
+        mfirebaseDatabase=FirebaseDatabase.getInstance();
+        FirebaseUser user=auth.getCurrentUser();
+        reference= FirebaseDatabase.getInstance().getReference();
+        userId=user.getUid();
+
     }
-}
+
+   /* private void showData(DataSnapshot dataSnapshot){
+        for(DataSnapshot ds: dataSnapshot.getChildren()){
+            Tagok t=new Tagok();
+            t.setEgyenleg(ds.getChildren(userId).getValue(Tagok.class).getEgyenleg());
+
+            Log.d(TAG, "showData: egyenleg: "+t.getEgyenleg());
+        }
+    }*/
+
+    }

@@ -47,7 +47,7 @@ public class Registration extends AppCompatActivity {
                         || etJelszo.getText().toString().isEmpty()) {
                     Toast.makeText(Registration.this, "Minden mezőt ki kell tölteni", Toast.LENGTH_SHORT).show();
                 } else {
-                    tagok.setFelhasznalonev(etVnev.getText().toString() + "" + etKnev.getText().toString());
+                    tagok.setFelhasznalonev(etVnev.getText().toString() + " " + etKnev.getText().toString());
                     tagok.setEmail(etEmail.getText().toString());
                     tagok.setJelszo(etJelszo.getText().toString());
                     tagok.setKartyaszam();
