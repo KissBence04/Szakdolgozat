@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,9 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Map;
-import java.util.Set;
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
+
 
 public class BankCard extends AppCompatActivity {
     private ImageView ivKartya;
@@ -31,11 +31,12 @@ public class BankCard extends AppCompatActivity {
 
     private SharedPreferences preferences;
 
-    private DatabaseReference reference;
+    private DatabaseReference mdatabase;
     private FirebaseAuth auth;
     private FirebaseDatabase mfirebaseDatabase;
     private String userId;
     private static final String TAG="ViewDatabase";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +70,25 @@ public class BankCard extends AppCompatActivity {
                 SharedPreferences.Editor editor=preferences.edit();
                 editor.putBoolean("Virtuális kártya",true);
                 editor.apply();
+                editor.commit();
             }
         });
 
-      /* btnEgyenleg.setOnClickListener(new View.OnClickListener() {
+      btnEgyenleg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reference.addValueEventListener(new ValueEventListener() {
+                mdatabase.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                       showData(dataSnapshot);
-                    }
-
+                        showData();
+                        }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
             }
-        });*/
+        });
     }
 
     public void init()
@@ -107,18 +108,30 @@ public class BankCard extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         mfirebaseDatabase=FirebaseDatabase.getInstance();
         FirebaseUser user=auth.getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference();
+        mdatabase= FirebaseDatabase.getInstance().getReference();
         userId=user.getUid();
 
     }
 
-   /* private void showData(DataSnapshot dataSnapshot){
-        for(DataSnapshot ds: dataSnapshot.getChildren()){
-            Tagok t=new Tagok();
-            t.setEgyenleg(ds.getChildren(userId).getValue(Tagok.class).getEgyenleg());
+    private void showData(){
+        mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                    int egyenleg = 0;
 
-            Log.d(TAG, "showData: egyenleg: "+t.getEgyenleg());
-        }
-    }*/
+                    egyenleg = tagok.getEgyenleg();
+                    Toast.makeText(BankCard.this, "egyenleg:" + egyenleg, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     }

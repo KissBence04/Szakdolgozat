@@ -52,28 +52,36 @@ public class Registration extends AppCompatActivity {
                     tagok.setJelszo(etJelszo.getText().toString());
                     tagok.setKartyaszam();
                     tagok.setEgyenleg();
-                    databaseReference.child(String.valueOf(maxid + 1)).setValue(tagok);
+
 
                     firebaseAuth.createUserWithEmailAndPassword(etEmail.getText().toString(), etJelszo.getText().toString())
                             .addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                                        if (!firebaseUser.isEmailVerified()) {
-                                            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    firebaseAuth.signInWithEmailAndPassword(etEmail.getText().toString(), etJelszo.getText().toString())
+                                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    Toast.makeText(Registration.this, "Erősítsd meg az email címed", Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(Registration.this, Login.class);
-                                                    startActivity(intent);
-                                                    finish();
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    if (task.isSuccessful()) {
+                                                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                                                        databaseReference.child(firebaseUser.getUid()).setValue(tagok);
+                                                        if (!firebaseUser.isEmailVerified()) {
+                                                            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    Toast.makeText(Registration.this, "Erősítsd meg az email címed", Toast.LENGTH_SHORT).show();
+                                                                    Intent intent = new Intent(Registration.this, Login.class);
+                                                                    startActivity(intent);
+                                                                    finish();
+                                                                }
+                                                            });
+                                                        }
+                                                    } else {
+                                                        Toast.makeText(Registration.this, "Sikertelen regisztráció", Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
                                             });
-                                        }
-                                    } else {
-                                        Toast.makeText(Registration.this, "Sikertelen regisztráció", Toast.LENGTH_SHORT).show();
-                                    }
+
                                 }
                             });
                 }
