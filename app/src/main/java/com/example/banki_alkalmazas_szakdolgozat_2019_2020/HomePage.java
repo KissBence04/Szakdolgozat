@@ -1,5 +1,6 @@
 package com.example.banki_alkalmazas_szakdolgozat_2019_2020;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +12,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.net.Inet4Address;
 
@@ -20,6 +25,8 @@ public class HomePage extends AppCompatActivity {
     private TextView tvWelc;
     private Button btnKartya,btnTranzakcio,btnKilep,btnKijelentkezes;
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
     private AlertDialog alertDialog;
     private AlertDialog.Builder alertDialogBuilder;
 
@@ -30,6 +37,25 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         init();
+
+        databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                    String fnev = "";
+
+                    fnev = tagok.getFelhasznalonev();
+                    tvWelc.setText("Üdvözüljük "+fnev+" alkalmazásunkban!");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         btnKilep.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,5 +118,8 @@ public class HomePage extends AppCompatActivity {
         tagok=new Tagok();
 
         firebaseAuth=FirebaseAuth.getInstance();
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        FirebaseUser user=firebaseAuth.getCurrentUser();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
     }
 }

@@ -109,7 +109,6 @@ public class BankCard extends AppCompatActivity {
         mfirebaseDatabase=FirebaseDatabase.getInstance();
         FirebaseUser user=auth.getCurrentUser();
         mdatabase= FirebaseDatabase.getInstance().getReference();
-        userId=user.getUid();
 
     }
 
@@ -123,7 +122,7 @@ public class BankCard extends AppCompatActivity {
                     int egyenleg = 0;
 
                     egyenleg = tagok.getEgyenleg();
-                    Toast.makeText(BankCard.this, "egyenleg:" + egyenleg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BankCard.this, "Aktuális egyenlege:" + egyenleg, Toast.LENGTH_SHORT).show();
                 }
             }
 
