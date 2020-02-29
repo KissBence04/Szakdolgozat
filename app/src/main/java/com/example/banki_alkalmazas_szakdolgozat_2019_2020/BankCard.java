@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +29,7 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 public class BankCard extends AppCompatActivity {
     private ImageView ivKartya;
     private Button btnKartya,btnTranzA,btnEgyenleg,btnVissza;
+    private TextView textView;
 
     private SharedPreferences preferences;
 
@@ -44,6 +46,7 @@ public class BankCard extends AppCompatActivity {
         setContentView(R.layout.activity_bank_card);
 
         init();
+
 
         btnVissza.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +77,25 @@ public class BankCard extends AppCompatActivity {
             }
         });
 
+        mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                    String kartyaszam = "";
+
+                    kartyaszam = tagok.getKartyaszam();
+                    textView.setText("Kártyaszám: "+kartyaszam);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
       btnEgyenleg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +116,7 @@ public class BankCard extends AppCompatActivity {
     public void init()
     {
         ivKartya=findViewById(R.id.ivBankCard);
+        textView=findViewById(R.id.tvKartyaSzam);
         btnKartya=findViewById(R.id.btnKartya);
         btnTranzA=findViewById(R.id.btnTranzA);
         btnEgyenleg=findViewById(R.id.btnBalances);
@@ -122,7 +145,7 @@ public class BankCard extends AppCompatActivity {
                     int egyenleg = 0;
 
                     egyenleg = tagok.getEgyenleg();
-                    Toast.makeText(BankCard.this, "Aktuális egyenlege:" + egyenleg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BankCard.this, "Aktuális egyenlege: " + egyenleg, Toast.LENGTH_SHORT).show();
                 }
             }
 

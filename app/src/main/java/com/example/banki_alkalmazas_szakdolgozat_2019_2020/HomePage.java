@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -121,5 +122,26 @@ public class HomePage extends AppCompatActivity {
         firebaseDatabase=FirebaseDatabase.getInstance();
         FirebaseUser user=firebaseAuth.getCurrentUser();
         databaseReference= FirebaseDatabase.getInstance().getReference();
+    }
+
+    public void onBackPressed()
+    {
+        alertDialogBuilder = new AlertDialog.Builder(HomePage.this);
+        alertDialogBuilder.setMessage("Biztos ki akarsz lépni az alkalmazásból?");
+        alertDialogBuilder.setPositiveButton("Nem", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialogBuilder.setNegativeButton("Igen", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        alertDialogBuilder.setCancelable(false);
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

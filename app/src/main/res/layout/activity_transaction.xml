@@ -18,6 +18,14 @@
             android:text="Aktuális egyenlege: "
             android:textSize="20dp"
             />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvCardNumber"
+            android:text="Aktuális kártyaszám: "
+            android:textSize="20dp"
+            android:layout_below="@id/tvEgyenleg"
+            />
     </RelativeLayout>
 
     <RelativeLayout

@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Transaction extends AppCompatActivity {
-    private TextView tvEgyenleg;
+    private TextView tvEgyenleg,tvKartyaSzam;
     private Button btnPKuldes,btnPFogadKer, btnPnValtas,btnVissza;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
@@ -53,6 +53,25 @@ public class Transaction extends AppCompatActivity {
             }
         });
 
+        databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                    String kartyaszam = "";
+
+                    kartyaszam = tagok.getKartyaszam();
+                    tvKartyaSzam.setText("Aktuális kártyaszám: "+kartyaszam);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         btnVissza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,10 +80,32 @@ public class Transaction extends AppCompatActivity {
                 finish();
             }
         });
+
+        /*btnPKuldes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Tagok tagok=new Tagok();
+                        int egyenleg=tagok.getEgyenleg();
+                        int kuldes=egyenleg-1000;
+                        dataSnapshot.getRef().child("egyenleg").setValue(kuldes);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });*/
     }
 
     public void init(){
         tvEgyenleg=findViewById(R.id.tvEgyenleg);
+        tvKartyaSzam=findViewById(R.id.tvCardNumber);
         btnPKuldes=findViewById(R.id.btnMoneySend);
         btnPFogadKer=findViewById(R.id.btnMoneyRequest);
         btnPnValtas=findViewById(R.id.btnCurrencyChange);
