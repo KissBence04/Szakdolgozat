@@ -11,39 +11,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight=".5">
+
         <EditText
+            android:id="@+id/etLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etLastName"
             android:layout_centerInParent="true"
             android:hint="Vezetéknév"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/etFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etLastName"
             android:hint="Keresztnév"
-            android:textSize="20dp"
-            android:layout_below="@id/etLastName"/>
+            android:textSize="20dp" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/etEmailCim"
-            android:hint="Email cím"
-            android:textSize="20dp"
-            android:layout_below="@id/etFirstName"
-            android:inputType="textEmailAddress"/>
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/etFirstName"
+            android:hint="Email cím"
+            android:inputType="textEmailAddress"
+            android:textSize="20dp" />
+
+        <EditText
             android:id="@+id/etJelszo"
-            android:hint="Jelszó"
-            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/etEmailCim"
-            android:inputType="textPassword"/>
+            android:hint="Jelszó"
+            android:inputType="textPassword"
+            android:textSize="20dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -52,28 +53,28 @@
         android:layout_weight=".5">
 
         <Spinner
+            android:id="@+id/spPenzNem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spPenzNem"
             android:entries="@array/currency_arrays"
-            android:prompt="@string/currency_prompt"/>
+            android:prompt="@string/currency_prompt" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/btnRegisztráció"
-            android:text="Regisztráció"
-            android:layout_centerHorizontal="true"
-            android:textAlignment="center"
-            android:layout_below="@id/spPenzNem"/>
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bttnVissza"
-            android:text="Vissza"
+            android:layout_below="@id/spPenzNem"
             android:layout_centerHorizontal="true"
-            android:textAlignment="center"
-            android:layout_below="@id/btnRegisztráció"/>
+            android:text="Regisztráció"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/bttnVissza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnRegisztráció"
+            android:layout_centerHorizontal="true"
+            android:text="Vissza"
+            android:textAlignment="center" />
     </RelativeLayout>
 </LinearLayout>

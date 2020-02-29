@@ -24,7 +24,7 @@ import java.net.Inet4Address;
 
 public class HomePage extends AppCompatActivity {
     private TextView tvWelc;
-    private Button btnKartya,btnTranzakcio,btnKilep,btnKijelentkezes;
+    private Button btnKartya, btnTranzakcio, btnKilep, btnKijelentkezes;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -42,13 +42,12 @@ public class HomePage extends AppCompatActivity {
         databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists())
-                {
+                if (dataSnapshot.exists()) {
                     Tagok tagok = dataSnapshot.getValue(Tagok.class);
                     String fnev = "";
 
                     fnev = tagok.getFelhasznalonev();
-                    tvWelc.setText("Üdvözüljük "+fnev+" alkalmazásunkban!");
+                    tvWelc.setText("Üdvözüljük " + fnev + " alkalmazásunkban!");
                 }
             }
 
@@ -84,7 +83,7 @@ public class HomePage extends AppCompatActivity {
         btnKartya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(HomePage.this,BankCard.class);
+                Intent intent = new Intent(HomePage.this, BankCard.class);
                 startActivity(intent);
                 finish();
             }
@@ -93,7 +92,7 @@ public class HomePage extends AppCompatActivity {
         btnTranzakcio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(HomePage.this,Transaction.class);
+                Intent intent = new Intent(HomePage.this, Transaction.class);
                 startActivity(intent);
                 finish();
             }
@@ -103,29 +102,28 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
-                Intent intent=new Intent(HomePage.this,Login.class);
+                Intent intent = new Intent(HomePage.this, Login.class);
                 startActivity(intent);
                 finish();
             }
         });
     }
 
-    public void init(){
-        tvWelc=findViewById(R.id.tvWelcomeMessage);
-        btnKartya=findViewById(R.id.btnCard);
-        btnTranzakcio=findViewById(R.id.btnTransaction);
-        btnKilep=findViewById(R.id.btnExit);
-        btnKijelentkezes=findViewById(R.id.btnSignOut);
-        tagok=new Tagok();
+    public void init() {
+        tvWelc = findViewById(R.id.tvWelcomeMessage);
+        btnKartya = findViewById(R.id.btnCard);
+        btnTranzakcio = findViewById(R.id.btnTransaction);
+        btnKilep = findViewById(R.id.btnExit);
+        btnKijelentkezes = findViewById(R.id.btnSignOut);
+        tagok = new Tagok();
 
-        firebaseAuth=FirebaseAuth.getInstance();
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        FirebaseUser user=firebaseAuth.getCurrentUser();
-        databaseReference= FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         alertDialogBuilder = new AlertDialog.Builder(HomePage.this);
         alertDialogBuilder.setMessage("Biztos ki akarsz lépni az alkalmazásból?");
         alertDialogBuilder.setPositiveButton("Nem", new DialogInterface.OnClickListener() {

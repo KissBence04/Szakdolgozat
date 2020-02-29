@@ -20,8 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Transaction extends AppCompatActivity {
-    private TextView tvEgyenleg,tvKartyaSzam;
-    private Button btnPKuldes,btnPFogadKer, btnPnValtas,btnVissza;
+    private TextView tvEgyenleg, tvKartyaSzam;
+    private Button btnPKuldes, btnPFogadKer, btnPnValtas, btnVissza;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -37,13 +37,12 @@ public class Transaction extends AppCompatActivity {
         databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists())
-                {
+                if (dataSnapshot.exists()) {
                     Tagok tagok = dataSnapshot.getValue(Tagok.class);
                     int egyenleg = 0;
 
                     egyenleg = tagok.getEgyenleg();
-                    tvEgyenleg.setText("Aktuális egyenleg: "+egyenleg);
+                    tvEgyenleg.setText("Aktuális egyenleg: \n\t- " + egyenleg);
                 }
             }
 
@@ -56,13 +55,12 @@ public class Transaction extends AppCompatActivity {
         databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists())
-                {
+                if (dataSnapshot.exists()) {
                     Tagok tagok = dataSnapshot.getValue(Tagok.class);
                     String kartyaszam = "";
 
                     kartyaszam = tagok.getKartyaszam();
-                    tvKartyaSzam.setText("Aktuális kártyaszám: "+kartyaszam);
+                    tvKartyaSzam.setText("Aktuális kártyaszám: \n\t- " + kartyaszam);
                 }
             }
 
@@ -75,7 +73,7 @@ public class Transaction extends AppCompatActivity {
         btnVissza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Transaction.this,HomePage.class);
+                Intent intent = new Intent(Transaction.this, HomePage.class);
                 startActivity(intent);
                 finish();
             }
@@ -103,17 +101,17 @@ public class Transaction extends AppCompatActivity {
         });*/
     }
 
-    public void init(){
-        tvEgyenleg=findViewById(R.id.tvEgyenleg);
-        tvKartyaSzam=findViewById(R.id.tvCardNumber);
-        btnPKuldes=findViewById(R.id.btnMoneySend);
-        btnPFogadKer=findViewById(R.id.btnMoneyRequest);
-        btnPnValtas=findViewById(R.id.btnCurrencyChange);
-        btnVissza=findViewById(R.id.btnVissza);
+    public void init() {
+        tvEgyenleg = findViewById(R.id.tvEgyenleg);
+        tvKartyaSzam = findViewById(R.id.tvCardNumber);
+        btnPKuldes = findViewById(R.id.btnMoneySend);
+        btnPFogadKer = findViewById(R.id.btnMoneyRequest);
+        btnPnValtas = findViewById(R.id.btnCurrencyChange);
+        btnVissza = findViewById(R.id.btnVissza);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        FirebaseUser user=firebaseAuth.getCurrentUser();
-        databaseReference= FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 }

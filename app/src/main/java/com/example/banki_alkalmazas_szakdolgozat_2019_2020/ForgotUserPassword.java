@@ -33,13 +33,12 @@ public class ForgotUserPassword extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful())
-                                {
+                                if (task.isSuccessful()) {
                                     Toast.makeText(ForgotUserPassword.this, "Email el lett küldve", Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(ForgotUserPassword.this,Login.class);
+                                    Intent intent = new Intent(ForgotUserPassword.this, Login.class);
                                     startActivity(intent);
                                     finish();
-                                }else{
+                                } else {
                                     Toast.makeText(ForgotUserPassword.this, "Email nem lett elküldve", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -48,11 +47,10 @@ public class ForgotUserPassword extends AppCompatActivity {
         });
     }
 
-    public void init()
-    {
-        etEmail=findViewById(R.id.Email);
-        btnUjJelszo=findViewById(R.id.bttnElfejtettJelszo);
+    public void init() {
+        etEmail = findViewById(R.id.Email);
+        btnUjJelszo = findViewById(R.id.bttnElfejtettJelszo);
 
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 }

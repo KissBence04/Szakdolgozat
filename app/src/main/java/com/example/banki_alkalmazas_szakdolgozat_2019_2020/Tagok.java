@@ -3,7 +3,7 @@ package com.example.banki_alkalmazas_szakdolgozat_2019_2020;
 import java.util.Random;
 
 public class Tagok {
-    public String felhasznalonev,email,jelszo,kartyaszam;
+    public String felhasznalonev, email, jelszo, kartyaszam;
     public int egyenleg;
 
     public String getFelhasznalonev() {
@@ -35,12 +35,12 @@ public class Tagok {
     }
 
     public void setKartyaszam() {
-        Random r=new Random();
-            String kartyaszam1 = Integer.toString((r.nextInt(10000)+1));
-            String kartyaszam2 = Integer.toString((r.nextInt(10000)+1));
-            String kartyaszam3 = Integer.toString((r.nextInt(10000)+1));
-            String kartyaszam4 = Integer.toString((r.nextInt(10000)+1));
-            this.kartyaszam = kartyaszam1 + " " + kartyaszam2 + " " + kartyaszam3 + " " + kartyaszam4;
+        Random r = new Random();
+        String kartyaszam1 = Integer.toString((r.nextInt(10000) + 1));
+        String kartyaszam2 = Integer.toString((r.nextInt(10000) + 1));
+        String kartyaszam3 = Integer.toString((r.nextInt(10000) + 1));
+        String kartyaszam4 = Integer.toString((r.nextInt(10000) + 1));
+        this.kartyaszam = kartyaszam1 + " " + kartyaszam2 + " " + kartyaszam3 + " " + kartyaszam4;
     }
 
     public Integer getEgyenleg() {

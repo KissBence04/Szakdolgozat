@@ -2,9 +2,11 @@ package com.example.banki_alkalmazas_szakdolgozat_2019_2020;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.Tag;
@@ -23,12 +25,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 
 public class BankCard extends AppCompatActivity {
     private ImageView ivKartya;
-    private Button btnKartya,btnTranzA,btnEgyenleg,btnVissza;
+    private Button btnKartya, btnTranzA, btnEgyenleg, btnVissza;
     private TextView textView;
 
     private SharedPreferences preferences;
@@ -37,7 +38,10 @@ public class BankCard extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseDatabase mfirebaseDatabase;
     private String userId;
-    private static final String TAG="ViewDatabase";
+    private static final String TAG = "ViewDatabase";
+
+    private AlertDialog alertDialog;
+    private AlertDialog.Builder alertDialogBuilder;
 
 
     @Override
@@ -51,7 +55,7 @@ public class BankCard extends AppCompatActivity {
         btnVissza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(BankCard.this,HomePage.class);
+                Intent intent = new Intent(BankCard.this, HomePage.class);
                 startActivity(intent);
                 finish();
             }
@@ -60,7 +64,7 @@ public class BankCard extends AppCompatActivity {
         btnTranzA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(BankCard.this,Transaction.class);
+                Intent intent = new Intent(BankCard.this, Transaction.class);
                 startActivity(intent);
                 finish();
             }
@@ -70,8 +74,8 @@ public class BankCard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ivKartya.setImageResource(R.drawable.bank_card);
-                SharedPreferences.Editor editor=preferences.edit();
-                editor.putBoolean("Virtuális kártya",true);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("Virtuális kártya", true);
                 editor.apply();
                 editor.commit();
             }
@@ -80,13 +84,12 @@ public class BankCard extends AppCompatActivity {
         mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists())
-                {
+                if (dataSnapshot.exists()) {
                     Tagok tagok = dataSnapshot.getValue(Tagok.class);
                     String kartyaszam = "";
 
                     kartyaszam = tagok.getKartyaszam();
-                    textView.setText("Kártyaszám: "+kartyaszam);
+                    textView.setText("Kártyaszám: " + kartyaszam);
                 }
             }
 
@@ -96,14 +99,16 @@ public class BankCard extends AppCompatActivity {
             }
         });
 
-      btnEgyenleg.setOnClickListener(new View.OnClickListener() {
+
+        btnEgyenleg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mdatabase.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         showData();
-                        }
+                    }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -113,34 +118,31 @@ public class BankCard extends AppCompatActivity {
         });
     }
 
-    public void init()
-    {
-        ivKartya=findViewById(R.id.ivBankCard);
-        textView=findViewById(R.id.tvKartyaSzam);
-        btnKartya=findViewById(R.id.btnKartya);
-        btnTranzA=findViewById(R.id.btnTranzA);
-        btnEgyenleg=findViewById(R.id.btnBalances);
-        btnVissza=findViewById(R.id.btnBack);
+    public void init() {
+        ivKartya = findViewById(R.id.ivBankCard);
+        textView = findViewById(R.id.tvKartyaSzam);
+        btnKartya = findViewById(R.id.btnKartya);
+        btnTranzA = findViewById(R.id.btnTranzA);
+        btnEgyenleg = findViewById(R.id.btnBalances);
+        btnVissza = findViewById(R.id.btnBack);
 
-        preferences=getPreferences(Context.MODE_PRIVATE);
-        if(preferences.getBoolean("Virtuális kártya",false))
-        {
+        preferences = getPreferences(Context.MODE_PRIVATE);
+        if (preferences.getBoolean("Virtuális kártya", false)) {
             ivKartya.setImageResource(R.drawable.bank_card);
         }
 
-        auth=FirebaseAuth.getInstance();
-        mfirebaseDatabase=FirebaseDatabase.getInstance();
-        FirebaseUser user=auth.getCurrentUser();
-        mdatabase= FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
+        mfirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        mdatabase = FirebaseDatabase.getInstance().getReference();
 
     }
 
-    private void showData(){
+    private void showData() {
         mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists())
-                {
+                if (dataSnapshot.exists()) {
                     Tagok tagok = dataSnapshot.getValue(Tagok.class);
                     int egyenleg = 0;
 
@@ -156,4 +158,4 @@ public class BankCard extends AppCompatActivity {
         });
     }
 
-    }
+}
