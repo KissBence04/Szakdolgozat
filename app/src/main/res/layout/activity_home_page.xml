@@ -1,68 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage">
+    tools:context=".HomePage"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvWelcomeMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Üdvözöljük alkalmazásunkban!"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/tvWelcomeMessage"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+       >
 
         <Button
             android:id="@+id/btnCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_weight=".5"
+            android:layout_weight="1"
             android:text="Kártya"
-            android:textAlignment="center" />
+             />
 
         <Button
             android:id="@+id/btnTransaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_weight=".5"
+            android:layout_weight="1"
             android:text="Tranzakció"
-            android:textAlignment="center" />
+            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/BottomScreenLayout"
+        android:layout_weight="0"
+        >
 
         <Button
             android:id="@+id/btnSignOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_weight=".5"
+            android:layout_weight="1"
             android:text="Kijelentkezés"
-            android:textAlignment="center" />
+            />
 
         <Button
             android:id="@+id/btnExit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_weight=".5"
+            android:layout_weight="1"
             android:text="Kilépés"
-            android:textAlignment="center" />
+            />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
