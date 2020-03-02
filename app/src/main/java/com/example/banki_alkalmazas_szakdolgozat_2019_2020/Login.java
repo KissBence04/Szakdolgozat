@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,7 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     private EditText etEmail, etJelszo;
-    private Button btnReg, btnBejel, btnElfJelszo;
+    private Button btnReg, btnBejel, btnElfJelszo,btnRating;
+    private RatingBar ratingBar;
 
     private FirebaseAuth mAuth;
 
@@ -81,6 +83,13 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Login.this, "Köszönjük az értékelését! Értékelése: "+ratingBar.getRating(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void init() {
@@ -89,6 +98,8 @@ public class Login extends AppCompatActivity {
         btnBejel = findViewById(R.id.btnLogin);
         btnReg = findViewById(R.id.btnRegistration);
         btnElfJelszo = findViewById(R.id.btnForgotPassword);
+        btnRating=findViewById(R.id.btnRating);
+        ratingBar=findViewById(R.id.rbStars);
 
         mAuth = FirebaseAuth.getInstance();
     }

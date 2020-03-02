@@ -42,8 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Bejelentkezés"
-            android:textAlignment="center" />
+            android:gravity="center"
+            android:text="Bejelentkezés" />
 
         <Button
             android:id="@+id/btnRegistration"
@@ -51,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnLogin"
             android:layout_centerHorizontal="true"
-            android:text="Regisztráció"
-            android:textAlignment="center" />
+            android:gravity="center"
+            android:text="Regisztráció" />
 
         <Button
             android:id="@+id/btnForgotPassword"
@@ -60,9 +60,32 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnRegistration"
             android:layout_centerHorizontal="true"
-            android:text="Elfelejtett jelszó"
-            android:textAlignment="center" />
-
+            android:gravity="center"
+            android:text="Elfelejtett jelszó" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tvErtekelje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Kérjük értékelje az alkalmazásunkat!"
+        android:textColor="@android:color/holo_blue_light" />
+
+    <RatingBar
+        android:id="@+id/rbStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnForgotPassword"
+        android:layout_gravity="center"
+        android:gravity="bottom"
+        android:numStars="5" />
+
+    <Button
+        android:id="@+id/btnRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Értékel" />
 </LinearLayout>
