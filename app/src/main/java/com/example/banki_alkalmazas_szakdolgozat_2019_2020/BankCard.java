@@ -158,4 +158,10 @@ public class BankCard extends AppCompatActivity {
         });
     }
 
+    public void onBackPressed(){
+        Intent intent = new Intent(BankCard.this, HomePage.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

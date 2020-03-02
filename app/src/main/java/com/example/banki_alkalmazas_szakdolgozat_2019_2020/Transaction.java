@@ -114,4 +114,10 @@ public class Transaction extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(Transaction.this, HomePage.class);
+        startActivity(intent);
+        finish();
+    }
 }
