@@ -79,17 +79,20 @@ public class Transaction extends AppCompatActivity {
             }
         });
 
-        /*btnPKuldes.setOnClickListener(new View.OnClickListener() {
+       /* btnPKuldes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Tagok tagok=new Tagok();
-                        int egyenleg=tagok.getEgyenleg();
-                        int kuldes=egyenleg-1000;
-                        dataSnapshot.getRef().child("egyenleg").setValue(kuldes);
+                        if (dataSnapshot.exists()) {
+                            Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                            int egyenleg = tagok.getEgyenleg();
+                            egyenleg -= 1000;
+                            tagok.setEgyenleg();
+                            databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).setValue(tagok);
+                        }
                     }
 
                     @Override
@@ -115,7 +118,7 @@ public class Transaction extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         Intent intent = new Intent(Transaction.this, HomePage.class);
         startActivity(intent);
         finish();

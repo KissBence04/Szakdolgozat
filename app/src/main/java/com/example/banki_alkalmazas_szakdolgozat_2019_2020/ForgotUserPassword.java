@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotUserPassword extends AppCompatActivity {
     private EditText etEmail;
-    private Button btnUjJelszo;
+    private Button btnUjJelszo, btnVissza;
 
     private FirebaseAuth firebaseAuth;
 
@@ -45,12 +45,28 @@ public class ForgotUserPassword extends AppCompatActivity {
                         });
             }
         });
+
+        btnVissza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ForgotUserPassword.this, Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void init() {
         etEmail = findViewById(R.id.Email);
         btnUjJelszo = findViewById(R.id.bttnElfejtettJelszo);
+        btnVissza = findViewById(R.id.Visszalepes);
 
         firebaseAuth = FirebaseAuth.getInstance();
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(ForgotUserPassword.this, Login.class);
+        startActivity(intent);
+        finish();
     }
 }

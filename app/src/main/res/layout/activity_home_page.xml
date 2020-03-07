@@ -30,15 +30,22 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_weight="1"
-            android:text="Kártya" />
+            android:background="@drawable/rounded_button"
+            android:text="Kártya"
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnTransaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:text="Tranzakció" />
+            android:background="@drawable/rounded_button"
+            android:text="Tranzakció"
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -56,7 +63,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_weight="1"
-            android:text="Kijelentkezés" />
+            android:background="@drawable/rounded_button"
+            android:text="Kijelentkezés"
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnExit"
@@ -64,7 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_weight="1"
-            android:text="Kilépés" />
+            android:background="@drawable/rounded_button"
+            android:text="Kilépés"
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

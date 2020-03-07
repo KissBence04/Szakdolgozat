@@ -38,7 +38,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Pénzküldés" />
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
+            android:text="Pénzküldés"
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnMoneyRequest"
@@ -46,7 +50,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnMoneySend"
             android:layout_centerHorizontal="true"
-            android:text="Pénz kérés/fogadás" />
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
+            android:text="Pénz kérés/fogadás"
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnCurrencyChange"
@@ -54,7 +63,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnMoneyRequest"
             android:layout_centerHorizontal="true"
-            android:text="Pénznem váltás" />
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
+            android:text="Pénznem váltás"
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnVissza"
@@ -62,7 +76,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnCurrencyChange"
             android:layout_centerHorizontal="true"
-            android:text="Vissza" />
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
+            android:text="Vissza"
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </LinearLayout>

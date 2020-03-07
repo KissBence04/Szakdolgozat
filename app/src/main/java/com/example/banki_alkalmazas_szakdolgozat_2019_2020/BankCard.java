@@ -26,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-
 public class BankCard extends AppCompatActivity {
     private ImageView ivKartya;
     private Button btnKartya, btnTranzA, btnEgyenleg, btnVissza;
@@ -37,11 +36,6 @@ public class BankCard extends AppCompatActivity {
     private DatabaseReference mdatabase;
     private FirebaseAuth auth;
     private FirebaseDatabase mfirebaseDatabase;
-    private String userId;
-    private static final String TAG = "ViewDatabase";
-
-    private AlertDialog alertDialog;
-    private AlertDialog.Builder alertDialogBuilder;
 
 
     @Override
@@ -78,10 +72,27 @@ public class BankCard extends AppCompatActivity {
                 editor.putBoolean("Virtuális kártya", true);
                 editor.apply();
                 editor.commit();
+
+                mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                            String kartyaszam = "";
+
+                            kartyaszam = tagok.getKartyaszam();
+                            textView.setText("Kártyaszám: " + kartyaszam);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
-
-        mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
+        /*mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -97,8 +108,7 @@ public class BankCard extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-
+        });*/
 
         btnEgyenleg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,10 +168,9 @@ public class BankCard extends AppCompatActivity {
         });
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         Intent intent = new Intent(BankCard.this, HomePage.class);
         startActivity(intent);
         finish();
     }
-
 }

@@ -122,4 +122,10 @@ public class Registration extends AppCompatActivity {
             }
         });
     }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(Registration.this, Login.class);
+        startActivity(intent);
+        finish();
+    }
 }

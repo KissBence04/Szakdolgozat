@@ -31,7 +31,6 @@ public class HomePage extends AppCompatActivity {
     private AlertDialog alertDialog;
     private AlertDialog.Builder alertDialogBuilder;
 
-    private Tagok tagok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +114,6 @@ public class HomePage extends AppCompatActivity {
         btnTranzakcio = findViewById(R.id.btnTransaction);
         btnKilep = findViewById(R.id.btnExit);
         btnKijelentkezes = findViewById(R.id.btnSignOut);
-        tagok = new Tagok();
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();

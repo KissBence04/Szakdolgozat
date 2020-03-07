@@ -40,7 +40,16 @@ public class Tagok {
         String kartyaszam2 = Integer.toString((r.nextInt(10000) + 1));
         String kartyaszam3 = Integer.toString((r.nextInt(10000) + 1));
         String kartyaszam4 = Integer.toString((r.nextInt(10000) + 1));
-        this.kartyaszam = kartyaszam1 + " " + kartyaszam2 + " " + kartyaszam3 + " " + kartyaszam4;
+        if (kartyaszam1.length() == 4 && kartyaszam2.length() == 4 && kartyaszam3.length() == 4 && kartyaszam4.length() == 4) {
+            this.kartyaszam = kartyaszam1 + " " + kartyaszam2 + " " + kartyaszam3 + " " + kartyaszam4;
+        }
+        else{
+            String kartyaszam1_b = Integer.toString((r.nextInt(10000) + 1));
+            String kartyaszam2_b = Integer.toString((r.nextInt(10000) + 1));
+            String kartyaszam3_b = Integer.toString((r.nextInt(10000) + 1));
+            String kartyaszam4_b = Integer.toString((r.nextInt(10000) + 1));
+            this.kartyaszam=kartyaszam1_b+" "+kartyaszam2_b+" "+kartyaszam3_b+" "+kartyaszam4_b;
+        }
     }
 
     public Integer getEgyenleg() {
@@ -50,4 +59,5 @@ public class Tagok {
     public void setEgyenleg() {
         this.egyenleg = 3500;
     }
+
 }

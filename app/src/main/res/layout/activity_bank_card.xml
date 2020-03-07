@@ -36,8 +36,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
             android:text="Virtális kártya igénylése"
-            android:textAlignment="center" />
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnTranzA"
@@ -45,8 +48,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnKartya"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
             android:text="Tranzakció"
-            android:textAlignment="center" />
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnBalances"
@@ -54,8 +61,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnTranzA"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
             android:text="Egyenleg"
-            android:textAlignment="center" />
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnBack"
@@ -63,8 +74,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnBalances"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
             android:text="Vissza"
-            android:textAlignment="center" />
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

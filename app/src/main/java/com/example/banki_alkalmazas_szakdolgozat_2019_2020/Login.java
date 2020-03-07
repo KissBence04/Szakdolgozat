@@ -1,8 +1,10 @@
 package com.example.banki_alkalmazas_szakdolgozat_2019_2020;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,8 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     private EditText etEmail, etJelszo;
-    private Button btnReg, btnBejel, btnElfJelszo,btnRating;
+    private Button btnReg, btnBejel, btnElfJelszo, btnRating;
     private RatingBar ratingBar;
+    private AlertDialog alertDialog;
+    private AlertDialog.Builder alertDialogBuilder;
 
     private FirebaseAuth mAuth;
 
@@ -87,7 +91,7 @@ public class Login extends AppCompatActivity {
         btnRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Login.this, "Köszönjük az értékelését! Értékelése: "+ratingBar.getRating(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Köszönjük az értékelését! Értékelése: " + ratingBar.getRating(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -98,9 +102,29 @@ public class Login extends AppCompatActivity {
         btnBejel = findViewById(R.id.btnLogin);
         btnReg = findViewById(R.id.btnRegistration);
         btnElfJelszo = findViewById(R.id.btnForgotPassword);
-        btnRating=findViewById(R.id.btnRating);
-        ratingBar=findViewById(R.id.rbStars);
+        btnRating = findViewById(R.id.btnRating);
+        ratingBar = findViewById(R.id.rbStars);
 
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    public void onBackPressed() {
+        alertDialogBuilder = new AlertDialog.Builder(Login.this);
+        alertDialogBuilder.setMessage("Biztos ki akarsz lépni az alkalmazásból?");
+        alertDialogBuilder.setPositiveButton("Nem", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialogBuilder.setNegativeButton("Igen", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        alertDialogBuilder.setCancelable(false);
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

@@ -14,35 +14,42 @@
 
         <EditText
             android:id="@+id/etLastName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:gravity="center"
             android:hint="Vezetéknév"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/etFirstName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etLastName"
+            android:layout_centerInParent="true"
+            android:gravity="center"
             android:hint="Keresztnév"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/etEmailCim"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etFirstName"
+            android:layout_centerInParent="true"
+            android:gravity="center"
             android:hint="Email cím"
             android:inputType="textEmailAddress"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/etJelszo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etEmailCim"
-            android:hint="Jelszó"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:hint="Jelszó (min. 6 karakter)"
             android:inputType="textPassword"
             android:textSize="20dp" />
     </RelativeLayout>
@@ -65,8 +72,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/spPenzNem"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
             android:text="Regisztráció"
-            android:textAlignment="center" />
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/bttnVissza"
@@ -74,7 +84,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnRegisztráció"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
             android:text="Vissza"
-            android:textAlignment="center" />
+            android:textColor="#C0C0C0"
+            android:textStyle="bold" />
     </RelativeLayout>
 </LinearLayout>
