@@ -58,13 +58,20 @@
         android:layout_width="match_parent"
         android:layout_height="350sp"
         android:layout_weight=".5">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Válassz ki a pénznemet!"
+            android:id="@+id/tvSegitoszoveg"
+            />
 
         <Spinner
             android:id="@+id/spPenzNem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/currency_arrays"
-            android:prompt="@string/currency_prompt" />
+            android:layout_below="@id/tvSegitoszoveg"
+            />
 
         <Button
             android:id="@+id/btnRegisztráció"
@@ -75,7 +82,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Regisztráció"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
 
         <Button
@@ -88,7 +95,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Vissza"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
     </RelativeLayout>
 </LinearLayout>

@@ -39,7 +39,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Virtális kártya igénylése"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
 
         <Button
@@ -52,7 +52,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Tranzakció"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
 
         <Button
@@ -65,7 +65,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Egyenleg"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
 
         <Button
@@ -78,7 +78,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Vissza"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
 
     </RelativeLayout>

@@ -70,9 +70,10 @@ public class BankCard extends AppCompatActivity {
                 ivKartya.setImageResource(R.drawable.bank_card);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("Virtuális kártya", true);
+                /*Tagok tagok=new Tagok();
+                editor.putString("kartyaszam",tagok.getKartyaszam());*/
                 editor.apply();
                 editor.commit();
-
                 mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -90,6 +91,7 @@ public class BankCard extends AppCompatActivity {
 
                     }
                 });
+
             }
         });
         /*mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {

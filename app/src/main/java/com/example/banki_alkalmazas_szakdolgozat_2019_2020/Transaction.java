@@ -42,7 +42,7 @@ public class Transaction extends AppCompatActivity {
                     int egyenleg = 0;
 
                     egyenleg = tagok.getEgyenleg();
-                    tvEgyenleg.setText("Aktuális egyenleg: \n\t- " + egyenleg);
+                    tvEgyenleg.setText("Aktuális egyenleg: \n\t " + egyenleg);
                 }
             }
 
@@ -60,7 +60,7 @@ public class Transaction extends AppCompatActivity {
                     String kartyaszam = "";
 
                     kartyaszam = tagok.getKartyaszam();
-                    tvKartyaSzam.setText("Aktuális kártyaszám: \n\t- " + kartyaszam);
+                    tvKartyaSzam.setText("Aktuális kártyaszám: \n\t " + kartyaszam);
                 }
             }
 

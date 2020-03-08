@@ -15,69 +15,62 @@
         android:text="Üdvözöljük alkalmazásunkban!"
         android:textSize="20dp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvWelcomeMessage"
-        android:layout_gravity="bottom"
-        android:layout_weight="1"
-        android:gravity="bottom"
+        android:layout_weight=".5"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnCard"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_weight="1"
             android:background="@drawable/rounded_button"
             android:text="Kártya"
-            android:textColor="#C0C0C0"
-            android:textStyle="bold" />
+            android:textColor="#F0F8FF"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
 
         <Button
             android:id="@+id/btnTransaction"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_marginTop="5dp"
-            android:layout_weight="1"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/rounded_button"
             android:text="Tranzakció"
-            android:textColor="#C0C0C0"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/BottomScreenLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_weight="0"
-        android:gravity="bottom"
-        android:orientation="horizontal">
+            android:textColor="#F0F8FF"
+            android:textStyle="bold"
+            android:layout_below="@id/btnCard"
+            android:layout_centerInParent="true"/>
 
         <Button
             android:id="@+id/btnSignOut"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/rounded_button"
             android:text="Kijelentkezés"
-            android:textColor="#C0C0C0"
-            android:textStyle="bold" />
+            android:textColor="#F0F8FF"
+            android:textStyle="bold"
+            android:layout_below="@id/btnTransaction"
+            android:layout_centerInParent="true"/>
 
         <Button
             android:id="@+id/btnExit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_centerInParent="true"
             android:background="@drawable/rounded_button"
             android:text="Kilépés"
-            android:textColor="#C0C0C0"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textColor="#F0F8FF"
+            android:textStyle="bold"
+            android:layout_below="@id/btnSignOut"/>
+    </RelativeLayout>
 
 </LinearLayout>

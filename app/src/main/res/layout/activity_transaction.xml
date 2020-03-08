@@ -41,7 +41,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Pénzküldés"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
 
         <Button
@@ -54,7 +54,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Pénz kérés/fogadás"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
 
         <Button
@@ -67,7 +67,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Pénznem váltás"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
 
         <Button
@@ -80,7 +80,7 @@
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Vissza"
-            android:textColor="#C0C0C0"
+            android:textColor="#F0F8FF"
             android:textStyle="bold" />
     </RelativeLayout>
 
