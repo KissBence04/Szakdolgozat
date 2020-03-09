@@ -31,8 +31,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvCardNumber"
-            android:text="QR Code: "
+            android:text="Adatbázis QR kódja: "
             android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/adatbazis"
+            android:layout_below="@id/tvQrCode"
+            android:layout_centerInParent="true"/>
     </RelativeLayout>
 
     <RelativeLayout
