@@ -21,15 +21,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.net.Inet4Address;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class HomePage extends AppCompatActivity {
-    private TextView tvWelc;
+    private TextView tvWelc,tvDatum;
     private Button btnKartya, btnTranzakcio, btnKilep, btnKijelentkezes;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private AlertDialog alertDialog;
     private AlertDialog.Builder alertDialogBuilder;
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date;
 
 
     @Override
@@ -55,6 +60,11 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
+
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("YYYY.MM.dd");
+        date = dateFormat.format(calendar.getTime());
+        tvDatum.setText("A mai dátum: "+date);
 
         btnKilep.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +120,7 @@ public class HomePage extends AppCompatActivity {
 
     public void init() {
         tvWelc = findViewById(R.id.tvWelcomeMessage);
+        tvDatum=findViewById(R.id.tv_DateDisplay);
         btnKartya = findViewById(R.id.btnCard);
         btnTranzakcio = findViewById(R.id.btnTransaction);
         btnKilep = findViewById(R.id.btnExit);

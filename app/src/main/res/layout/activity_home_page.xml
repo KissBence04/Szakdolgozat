@@ -15,6 +15,14 @@
         android:text="Üdvözöljük alkalmazásunkban!"
         android:textSize="20dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_DateDisplay"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
