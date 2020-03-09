@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -68,12 +69,6 @@ public class BankCard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ivKartya.setImageResource(R.drawable.bank_card);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean("Virtuális kártya", true);
-                /*Tagok tagok=new Tagok();
-                editor.putString("kartyaszam",tagok.getKartyaszam());*/
-                editor.apply();
-                editor.commit();
                 mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -83,15 +78,22 @@ public class BankCard extends AppCompatActivity {
 
                             kartyaszam = tagok.getKartyaszam();
                             textView.setText("Kártyaszám: " + kartyaszam);
-                        }
-                    }
 
+                        }
+                        /*PreferenceManager.getDefaultSharedPreferences(BankCard.this)
+                                .edit()
+                                .putString("kartyaszam",kartyaszam).apply();*/
+                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("Virtuális kártya", true);
+                editor.putBoolean("kartyaszam",true);
+                editor.apply();
+                editor.commit();
             }
         });
         /*mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {

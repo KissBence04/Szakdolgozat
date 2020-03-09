@@ -1,10 +1,12 @@
 package com.example.banki_alkalmazas_szakdolgozat_2019_2020;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.solver.widgets.Snapshot;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +20,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class Transaction extends AppCompatActivity {
-    private TextView tvEgyenleg, tvKartyaSzam;
-    private Button btnPKuldes, btnPFogadKer, btnPnValtas, btnVissza;
+    private TextView tvEgyenleg, tvKartyaSzam,tvQrCode;
+    private Button btnPKuldes, btnPFogadKer, btnPnValtas, btnVissza, btnQRCodeScan;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -79,6 +83,20 @@ public class Transaction extends AppCompatActivity {
             }
         });
 
+        btnQRCodeScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator intentIntegrator=new IntentIntegrator(Transaction.this);
+                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                intentIntegrator.setPrompt("QRCode Scanning by Banki alkalmazás");
+                intentIntegrator.setCameraId(0);
+                intentIntegrator.setBeepEnabled(false);
+                intentIntegrator.setBarcodeImageEnabled(false);
+                intentIntegrator.initiateScan();
+            }
+        });
+
+
        /* btnPKuldes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,12 +122,34 @@ public class Transaction extends AppCompatActivity {
         });*/
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if (result != null)
+        {
+            if (result.getContents() == null)
+            {
+                Toast.makeText(this, "Kiléptünk a scannelésből", Toast.LENGTH_SHORT).show();
+            }else
+            {
+                tvQrCode.setText("QR Code: "+ result.getContents());
+
+                Uri uri = Uri.parse(result.getContents());
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     public void init() {
         tvEgyenleg = findViewById(R.id.tvEgyenleg);
         tvKartyaSzam = findViewById(R.id.tvCardNumber);
+        tvQrCode=findViewById(R.id.tvQrCode);
         btnPKuldes = findViewById(R.id.btnMoneySend);
         btnPFogadKer = findViewById(R.id.btnMoneyRequest);
         btnPnValtas = findViewById(R.id.btnCurrencyChange);
+        btnQRCodeScan=findViewById(R.id.btnQRCodeScanner);
         btnVissza = findViewById(R.id.btnVissza);
 
         firebaseAuth = FirebaseAuth.getInstance();

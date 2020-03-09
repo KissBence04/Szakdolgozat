@@ -9,8 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".5">
+        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/tvEgyenleg"
@@ -26,12 +25,20 @@
             android:layout_below="@id/tvEgyenleg"
             android:text="Aktuális kártyaszám: "
             android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvQrCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCardNumber"
+            android:text="QR Code: "
+            android:textSize="20dp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".5">
+        android:gravity="center">
 
         <Button
             android:id="@+id/btnMoneySend"
@@ -42,7 +49,8 @@
             android:padding="16dp"
             android:text="Pénzküldés"
             android:textColor="#F0F8FF"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"/>
 
         <Button
             android:id="@+id/btnMoneyRequest"
@@ -50,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnMoneySend"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Pénz kérés/fogadás"
@@ -63,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnMoneyRequest"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Pénznem váltás"
@@ -71,12 +79,25 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnVissza"
+            android:id="@+id/btnQRCodeScanner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnCurrencyChange"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rounded_button"
+            android:padding="16dp"
+            android:text="QR Code Scanner"
+            android:textColor="#F0F8FF"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnVissza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnQRCodeScanner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Vissza"
