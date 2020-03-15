@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Login extends AppCompatActivity {
     private EditText etEmail, etJelszo;
@@ -28,6 +36,7 @@ public class Login extends AppCompatActivity {
     private AlertDialog.Builder alertDialogBuilder;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,38 +55,55 @@ public class Login extends AppCompatActivity {
         });
 
         btnBejel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (etEmail.getText().toString().isEmpty()
-                        || etJelszo.getText().toString().isEmpty()) {
-                    Toast.makeText(Login.this, "Minden mezőt ki kell tölteni", Toast.LENGTH_SHORT).show();
-                } else {
-                    mAuth.signInWithEmailAndPassword(etEmail.getText().toString(), etJelszo.getText().toString())
-                            .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        if (!user.isEmailVerified()) {
-                                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            reference.child("Felhasználók").child(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    Toast.makeText(Login.this, "Erősítsd meg az emailedet", Toast.LENGTH_SHORT).show();
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                    if (dataSnapshot.exists()) {
+                                                        Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                                                        String jelszo = tagok.getJelszo();
+                                                        if (BCrypt.checkpw(etJelszo.getText().toString(), jelszo)) {
+                                                            if (etEmail.getText().toString().isEmpty()
+                                                                    || etJelszo.getText().toString().isEmpty()) {
+                                                                Toast.makeText(Login.this, "Minden mezőt ki kell tölteni", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                mAuth.signInWithEmailAndPassword(etEmail.getText().toString(), etJelszo.getText().toString())
+                                                                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                                                                            @Override
+                                                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                                                if (task.isSuccessful()) {
+                                                                                    FirebaseUser user = mAuth.getCurrentUser();
+                                                                                    if (!user.isEmailVerified()) {
+                                                                                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                            @Override
+                                                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                                                Toast.makeText(Login.this, "Erősítsd meg az emailedet", Toast.LENGTH_SHORT).show();
+                                                                                            }
+                                                                                        });
+                                                                                    } else {
+                                                                                        Intent intent = new Intent(Login.this, HomePage.class);
+                                                                                        startActivity(intent);
+                                                                                        finish();
+                                                                                    }
+                                                                                } else {
+                                                                                    Toast.makeText(Login.this, "Hibás felhasználónév vagy jelszó", Toast.LENGTH_SHORT).show();
+                                                                                }
+                                                                            }
+                                                                        });
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
                                                 }
                                             });
-                                        } else {
-                                            Intent intent = new Intent(Login.this, HomePage.class);
-                                            startActivity(intent);
-                                            finish();
                                         }
-                                    } else {
-                                        Toast.makeText(Login.this, "Hibás felhasználónév vagy jelszó", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                }
-            }
-        });
+                                    });
+
 
         btnElfJelszo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +132,7 @@ public class Login extends AppCompatActivity {
         ratingBar = findViewById(R.id.rbStars);
 
         mAuth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference();
     }
 
     public void onBackPressed() {

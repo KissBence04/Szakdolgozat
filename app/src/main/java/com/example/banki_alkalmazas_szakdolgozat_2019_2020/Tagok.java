@@ -56,8 +56,8 @@ public class Tagok {
         return egyenleg;
     }
 
-    public void setEgyenleg() {
-        this.egyenleg = 3500;
+    public void setEgyenleg(int szam) {
+        this.egyenleg = szam;
     }
 
 }

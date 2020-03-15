@@ -83,6 +83,31 @@ public class Transaction extends AppCompatActivity {
             }
         });
 
+
+
+       btnPKuldes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                        int egyenleg = tagok.getEgyenleg();
+                        if (dataSnapshot.exists()) {
+                            egyenleg-=1000;
+                            tagok.setEgyenleg(egyenleg);
+                            databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).setValue(tagok);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
         btnQRCodeScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,31 +120,6 @@ public class Transaction extends AppCompatActivity {
                 intentIntegrator.initiateScan();
             }
         });
-
-
-       /* btnPKuldes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            Tagok tagok = dataSnapshot.getValue(Tagok.class);
-                            int egyenleg = tagok.getEgyenleg();
-                            egyenleg -= 1000;
-                            tagok.setEgyenleg();
-                            databaseReference.child("Felhasználók").child(firebaseAuth.getUid()).setValue(tagok);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });*/
     }
 
     @Override
@@ -132,7 +132,6 @@ public class Transaction extends AppCompatActivity {
                 Toast.makeText(this, "Kiléptünk a scannelésből", Toast.LENGTH_SHORT).show();
             }else
             {
-
                 Uri uri = Uri.parse(result.getContents());
                 Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(intent);

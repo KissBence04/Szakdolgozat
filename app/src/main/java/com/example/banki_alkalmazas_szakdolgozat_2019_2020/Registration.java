@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class Registration extends AppCompatActivity {
     private EditText etVnev, etKnev, etEmail, etJelszo;
     private Button btnReg, bttnVissza;
@@ -50,11 +52,12 @@ public class Registration extends AppCompatActivity {
                         || etJelszo.getText().toString().isEmpty()) {
                     Toast.makeText(Registration.this, "Minden mezőt ki kell tölteni", Toast.LENGTH_SHORT).show();
                 } else {
-                    tagok.setFelhasznalonev(etVnev.getText().toString() + " " + etKnev.getText().toString());
+                    tagok.setFelhasznalonev(etVnev.getText().toString()+" "+etKnev.getText().toString());
                     tagok.setEmail(etEmail.getText().toString());
-                    tagok.setJelszo(etJelszo.getText().toString());
+                    String hashed=BCrypt.hashpw(etJelszo.getText().toString(),BCrypt.gensalt(12));
+                    tagok.setJelszo(hashed);
                     tagok.setKartyaszam();
-                    tagok.setEgyenleg();
+                    tagok.setEgyenleg(3500);
 
 
                     firebaseAuth.createUserWithEmailAndPassword(etEmail.getText().toString(), etJelszo.getText().toString())
