@@ -16,9 +16,11 @@
             android:id="@+id/etLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140sp"
+            android:background="@drawable/rounded_et"
             android:hint="Vezetéknév"
+            android:padding="10dp"
             android:textSize="20dp" />
 
         <EditText
@@ -26,9 +28,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etLastName"
-            android:layout_centerInParent="true"
-            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_et"
             android:hint="Keresztnév"
+            android:padding="10dp"
             android:textSize="20dp" />
 
         <EditText
@@ -36,10 +40,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etFirstName"
-            android:layout_centerInParent="true"
-            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_et"
             android:hint="Email cím"
             android:inputType="textEmailAddress"
+            android:padding="10dp"
             android:textSize="20dp" />
 
         <EditText
@@ -47,10 +53,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etEmailCim"
-            android:layout_centerInParent="true"
-            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/rounded_et"
             android:hint="Jelszó (min. 6 karakter)"
             android:inputType="textPassword"
+            android:padding="10dp"
             android:textSize="20dp" />
     </RelativeLayout>
 
@@ -58,20 +66,19 @@
         android:layout_width="match_parent"
         android:layout_height="350sp"
         android:layout_weight=".5">
+
         <TextView
+            android:id="@+id/tvSegitoszoveg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Válassz ki a pénznemet!"
-            android:id="@+id/tvSegitoszoveg"
-            />
+            android:text="Válassz ki a pénznemet!" />
 
         <Spinner
             android:id="@+id/spPenzNem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/currency_arrays"
             android:layout_below="@id/tvSegitoszoveg"
-            />
+            android:entries="@array/currency_arrays" />
 
         <Button
             android:id="@+id/btnRegisztráció"

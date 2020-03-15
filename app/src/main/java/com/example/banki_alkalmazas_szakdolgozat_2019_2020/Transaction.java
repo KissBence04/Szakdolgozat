@@ -24,7 +24,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class Transaction extends AppCompatActivity {
-    private TextView tvEgyenleg, tvKartyaSzam,tvQrCode;
+    private TextView tvEgyenleg, tvKartyaSzam;
     private Button btnPKuldes, btnPFogadKer, btnPnValtas, btnVissza, btnQRCodeScan;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
@@ -132,7 +132,6 @@ public class Transaction extends AppCompatActivity {
                 Toast.makeText(this, "Kiléptünk a scannelésből", Toast.LENGTH_SHORT).show();
             }else
             {
-                tvQrCode.setText("QR Code: "+ result.getContents());
 
                 Uri uri = Uri.parse(result.getContents());
                 Intent intent = new Intent(Intent.ACTION_VIEW,uri);
@@ -145,7 +144,6 @@ public class Transaction extends AppCompatActivity {
     public void init() {
         tvEgyenleg = findViewById(R.id.tvEgyenleg);
         tvKartyaSzam = findViewById(R.id.tvCardNumber);
-        tvQrCode=findViewById(R.id.tvQrCode);
         btnPKuldes = findViewById(R.id.btnMoneySend);
         btnPFogadKer = findViewById(R.id.btnMoneyRequest);
         btnPnValtas = findViewById(R.id.btnCurrencyChange);
