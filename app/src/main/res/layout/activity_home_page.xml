@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".HomePage">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/credit_card"
+        android:layout_marginBottom="10dp"/>
+
     <TextView
         android:id="@+id/tvWelcomeMessage"
         android:layout_width="match_parent"

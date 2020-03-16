@@ -107,15 +107,23 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        btnKijelentkezes.setOnClickListener(new View.OnClickListener() {
+        /*btnKijelentkezes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.AuthStateListener authStateListener=new FirebaseAuth.AuthStateListener() {
+                    @Override
+                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                        if(firebaseAuth.getCurrentUser()==null){
+
+                        }
+                    }
+                }
                 firebaseAuth.signOut();
                 Intent intent = new Intent(HomePage.this, Login.class);
                 startActivity(intent);
                 finish();
             }
-        });
+        });*/
     }
 
     public void init() {

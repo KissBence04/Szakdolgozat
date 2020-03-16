@@ -55,55 +55,57 @@ public class Login extends AppCompatActivity {
         });
 
         btnBejel.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            reference.child("Felhasználók").child(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                    if (dataSnapshot.exists()) {
-                                                        Tagok tagok = dataSnapshot.getValue(Tagok.class);
-                                                        String jelszo = tagok.getJelszo();
-                                                        if (BCrypt.checkpw(etJelszo.getText().toString(), jelszo)) {
-                                                            if (etEmail.getText().toString().isEmpty()
-                                                                    || etJelszo.getText().toString().isEmpty()) {
-                                                                Toast.makeText(Login.this, "Minden mezőt ki kell tölteni", Toast.LENGTH_SHORT).show();
-                                                            } else {
-                                                                mAuth.signInWithEmailAndPassword(etEmail.getText().toString(), etJelszo.getText().toString())
-                                                                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                                                                            @Override
-                                                                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                                                                if (task.isSuccessful()) {
-                                                                                    FirebaseUser user = mAuth.getCurrentUser();
-                                                                                    if (!user.isEmailVerified()) {
-                                                                                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                            @Override
-                                                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                                                Toast.makeText(Login.this, "Erősítsd meg az emailedet", Toast.LENGTH_SHORT).show();
-                                                                                            }
-                                                                                        });
-                                                                                    } else {
-                                                                                        Intent intent = new Intent(Login.this, HomePage.class);
-                                                                                        startActivity(intent);
-                                                                                        finish();
-                                                                                    }
-                                                                                } else {
-                                                                                    Toast.makeText(Login.this, "Hibás felhasználónév vagy jelszó", Toast.LENGTH_SHORT).show();
-                                                                                }
-                                                                            }
-                                                                        });
+            @Override
+            public void onClick(View v) {
+                if (etEmail.getText().toString().isEmpty() || etJelszo.getText().toString().isEmpty()) {
+                    Toast.makeText(Login.this, "Minden mezőt ki kell tölteni", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                reference.child("Felhasználók").child(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Tagok tagok = dataSnapshot.getValue(Tagok.class);
+                            String jelszo = tagok.getJelszo();
+                            if (BCrypt.checkpw(etJelszo.getText().toString(), jelszo)) {
+
+                                mAuth.signInWithEmailAndPassword(etEmail.getText().toString(), etJelszo.getText().toString())
+                                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                if (task.isSuccessful()) {
+                                                    FirebaseUser user = mAuth.getCurrentUser();
+                                                    if (!user.isEmailVerified()) {
+                                                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                Toast.makeText(Login.this, "Erősítsd meg az emailedet", Toast.LENGTH_SHORT).show();
                                                             }
-                                                        }
+                                                        });
+                                                    } else {
+                                                        Intent intent = new Intent(Login.this, HomePage.class);
+                                                        startActivity(intent);
+                                                        finish();
                                                     }
+                                                } else {
+                                                    Toast.makeText(Login.this, "Hibás felhasználónév vagy jelszó", Toast.LENGTH_SHORT).show();
                                                 }
+                                            }
+                                        });
+                            }else{
+                                Toast.makeText(Login.this, "Hibás felhasználónév vagy jelszó", Toast.LENGTH_SHORT).show();
 
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                            }
+                        }
+                    }
 
-                                                }
-                                            });
-                                        }
-                                    });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                    }
+                });
+            }
+        });
 
         btnElfJelszo.setOnClickListener(new View.OnClickListener() {
             @Override

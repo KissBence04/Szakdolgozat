@@ -69,31 +69,32 @@ public class BankCard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ivKartya.setImageResource(R.drawable.bank_card);
+
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("Virtuális kártya", true);
+                editor.apply();
+                editor.commit();
+
                 mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
+                            SharedPreferences.Editor editor1=preferences.edit();
                             Tagok tagok = dataSnapshot.getValue(Tagok.class);
                             String kartyaszam = "";
 
                             kartyaszam = tagok.getKartyaszam();
+                            editor1.putString(kartyaszam,"kartyaszam");
+                            editor1.apply();
+                            editor1.commit();
                             textView.setText("Kártyaszám: " + kartyaszam);
-
                         }
-                        /*PreferenceManager.getDefaultSharedPreferences(BankCard.this)
-                                .edit()
-                                .putString("kartyaszam",kartyaszam).apply();*/
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean("Virtuális kártya", true);
-                editor.putBoolean("kartyaszam",true);
-                editor.apply();
-                editor.commit();
             }
         });
         /*mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
@@ -144,6 +145,10 @@ public class BankCard extends AppCompatActivity {
         if (preferences.getBoolean("Virtuális kártya", false)) {
             ivKartya.setImageResource(R.drawable.bank_card);
         }
+        /*if(preferences.getString("kártyaszám","")){
+            Tagok tagok=new Tagok();
+            textView.setText("Kártyaszám"+tagok.getKartyaszam());
+        }*/
 
         auth = FirebaseAuth.getInstance();
         mfirebaseDatabase = FirebaseDatabase.getInstance();

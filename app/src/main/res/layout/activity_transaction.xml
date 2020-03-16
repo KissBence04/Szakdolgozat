@@ -7,16 +7,25 @@
     android:orientation="vertical"
     tools:context=".Transaction">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/credit_card"
+        android:layout_marginBottom="10dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvEgyenleg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Aktuális egyenlege: "
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/tvCardNumber"
@@ -24,7 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvEgyenleg"
             android:text="Aktuális kártyaszám: "
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"/>
 
     </RelativeLayout>
 
@@ -38,12 +48,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
             android:background="@drawable/rounded_button"
             android:padding="16dp"
             android:text="Pénzküldés"
             android:textColor="#F0F8FF"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnMoneyRequest"

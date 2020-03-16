@@ -12,6 +12,14 @@
         android:layout_height="match_parent"
         android:layout_weight=".5">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/credit_card"
+            android:layout_marginBottom="10dp"/>
+
         <EditText
             android:id="@+id/etLastName"
             android:layout_width="wrap_content"
@@ -21,7 +29,8 @@
             android:background="@drawable/rounded_et"
             android:hint="Vezetéknév"
             android:padding="10dp"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/etFirstName"
@@ -33,7 +42,8 @@
             android:background="@drawable/rounded_et"
             android:hint="Keresztnév"
             android:padding="10dp"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:gravity="center" />
 
         <EditText
             android:id="@+id/etEmailCim"
@@ -46,7 +56,8 @@
             android:hint="Email cím"
             android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/etJelszo"
@@ -59,7 +70,8 @@
             android:hint="Jelszó (min. 6 karakter)"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:gravity="center"/>
     </RelativeLayout>
 
     <RelativeLayout
