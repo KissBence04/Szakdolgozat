@@ -84,10 +84,10 @@ public class BankCard extends AppCompatActivity {
                             String kartyaszam = "";
 
                             kartyaszam = tagok.getKartyaszam();
-                            editor1.putString(kartyaszam,"kartyaszam");
+                            editor1.putString("kartyaszam",kartyaszam);
                             editor1.apply();
                             editor1.commit();
-                            textView.setText("Kártyaszám: " + kartyaszam);
+                            textView.setText("\tKártyaszám: " + kartyaszam);
                         }
                     }
                     @Override
@@ -145,10 +145,10 @@ public class BankCard extends AppCompatActivity {
         if (preferences.getBoolean("Virtuális kártya", false)) {
             ivKartya.setImageResource(R.drawable.bank_card);
         }
-        /*if(preferences.getString("kártyaszám","")){
-            Tagok tagok=new Tagok();
-            textView.setText("Kártyaszám"+tagok.getKartyaszam());
-        }*/
+        String kartyaszam = preferences.getString("kartyaszam", "");
+        if (!kartyaszam.equals("")){
+            textView.setText("\tKártyaszám: " + kartyaszam);
+        }
 
         auth = FirebaseAuth.getInstance();
         mfirebaseDatabase = FirebaseDatabase.getInstance();
