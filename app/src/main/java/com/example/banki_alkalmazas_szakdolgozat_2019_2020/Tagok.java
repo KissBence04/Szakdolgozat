@@ -48,7 +48,7 @@ public class Tagok {
             String kartyaszam2_b = Integer.toString((r.nextInt(10000) + 1));
             String kartyaszam3_b = Integer.toString((r.nextInt(10000) + 1));
             String kartyaszam4_b = Integer.toString((r.nextInt(10000) + 1));
-            this.kartyaszam=kartyaszam1_b+" "+kartyaszam2_b+" "+kartyaszam3_b+" "+kartyaszam4_b;
+            this.kartyaszam=kartyaszam1_b+"-"+kartyaszam2_b+"-"+kartyaszam3_b+"-"+kartyaszam4_b;
         }
     }
 
