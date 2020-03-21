@@ -41,7 +41,7 @@ public class Tagok {
         String kartyaszam3 = Integer.toString((r.nextInt(10000) + 1));
         String kartyaszam4 = Integer.toString((r.nextInt(10000) + 1));
         if (kartyaszam1.length() == 4 && kartyaszam2.length() == 4 && kartyaszam3.length() == 4 && kartyaszam4.length() == 4) {
-            this.kartyaszam = kartyaszam1 + " " + kartyaszam2 + " " + kartyaszam3 + " " + kartyaszam4;
+            this.kartyaszam = kartyaszam1 + "-" + kartyaszam2 + "-" + kartyaszam3 + "-" + kartyaszam4;
         }
         else{
             String kartyaszam1_b = Integer.toString((r.nextInt(10000) + 1));
