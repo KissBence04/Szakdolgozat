@@ -97,23 +97,6 @@ public class BankCard extends AppCompatActivity {
                 });
             }
         });
-        /*mdatabase.child("Felhasználók").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    Tagok tagok = dataSnapshot.getValue(Tagok.class);
-                    String kartyaszam = "";
-
-                    kartyaszam = tagok.getKartyaszam();
-                    textView.setText("Kártyaszám: " + kartyaszam);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
         btnEgyenleg.setOnClickListener(new View.OnClickListener() {
             @Override
